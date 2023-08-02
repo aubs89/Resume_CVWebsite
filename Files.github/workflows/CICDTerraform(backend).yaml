@@ -1,0 +1,52 @@
+name: 'Terraform GitHub Actions'
+on:
+  push:
+    branches:
+      - main
+env:
+  TF_VERSION: 'latest'
+  TF_CLI_ARGS: '-no-color'
+  AWS_REGION: 'us-east-1'  # Update this if you're using a different AWS region
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v3
+
+      - name: 'Terraform Setup'
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+
+      - name: 'Configure AWS Credentials'
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AKIA522AOM4V4VTQN7EY }}
+          aws-secret-access-key: ${{ secrets.6+kFo/nzM85LbZJkPVhnMYztq8wLNnsBYVBTR1VC }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: 'Terraform Init'
+        run: terraform init
+
+      - name: 'Terraform Validate'
+        run: terraform validate ${{ env.TF_CLI_ARGS }}
+
+      - name: 'Setup Python'
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: 'Install dependencies'
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 'Run tests'
+        run: python -m pytest your-test-script.py
+
+      - name: 'Terraform Apply'
+        run: terraform apply ${{ env.TF_CLI_ARGS }} -auto-approve
