@@ -50,6 +50,16 @@ jobs:
 
       - name: 'Terraform Plan'
         run: terraform plan ${{ env.TF_CLI_ARGS }}
+        
+      - name: 'Terraform Workspace Show'
+        run: terraform workspace show
+
+      - name: 'Terraform Plan'
+        run: terraform plan ${{ env.TF_CLI_ARGS }}
+
+      - name: 'Terraform Show'
+        run: terraform show
+
 
       - name: 'Terraform Apply'
         run: terraform apply ${{ env.TF_CLI_ARGS }} -auto-approve
