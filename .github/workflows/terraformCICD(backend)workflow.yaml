@@ -48,5 +48,8 @@ jobs:
       - name: 'Run tests'
         run: python -m pytest your-test-script.py
 
+      - name: 'Terraform Plan'
+        run: terraform plan ${{ env.TF_CLI_ARGS }}
+
       - name: 'Terraform Apply'
         run: terraform apply ${{ env.TF_CLI_ARGS }} -auto-approve
