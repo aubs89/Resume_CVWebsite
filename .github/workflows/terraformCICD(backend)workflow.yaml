@@ -62,3 +62,12 @@ jobs:
 
       - name: 'Terraform Apply'
         run: terraform apply ${{ env.TF_CLI_ARGS }} -auto-approve
+        
+      - name: 'Print Terraform version'
+        run: terraform version
+
+      - name: 'Debug: Terraform Init and Plan'
+        run: |
+        terraform init
+        terraform plan
+
