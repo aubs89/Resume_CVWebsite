@@ -68,6 +68,6 @@ jobs:
 
       - name: 'Debug: Terraform Init and Plan'
         run: |
-        terraform init
-        terraform plan
+          terraform init
+          terraform plan
 
