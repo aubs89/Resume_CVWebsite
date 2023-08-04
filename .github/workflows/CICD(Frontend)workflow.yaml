@@ -24,11 +24,11 @@ jobs:
         uses: jakejarvis/s3-sync-action@master
         with:
           args: --follow-symlinks --delete --exclude '.git/*'
-          bucket: ${{ secrets.RESUME_WEB_BUCKET }}
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.TBD }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.KEY }}
           AWS_REGION: 'us-east-1'
+          AWS_S3_BUCKET: ${{ secrets.RESUME_WEB_BUCKET }}
 
       - name: Invalidate CloudFront cache
         run: |
