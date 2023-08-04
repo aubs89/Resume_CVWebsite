@@ -17,14 +17,18 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.TBD }}
-          aws-secret-access-key: ${{ secrets.KEY }}
+          aws-secret-access-key: ${{ secrets.Key }}
           aws-region: us-east-1
 
       - name: Deploy to S3
         uses: jakejarvis/s3-sync-action@master
+        env:
+          AWS_S3_BUCKET: 'resume-web-bucket'
+          AWS_ACCESS_KEY_ID: ${{ secrets.TBD }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.Key }}
+          AWS_REGION: 'us-east-1'
         with:
           args: --acl public-read --follow-symlinks --delete
-          AWS_S3_BUCKET: resume-web-bucket
 
       - name: Invalidate CloudFront cache
         run: |
