@@ -24,9 +24,9 @@ jobs:
         uses: aws-actions/s3-sync-action@v0.5.0
         with:
           source_dir: .
-          bucket_name: your-s3-bucket-name
+          bucket_name: resume-web-bucket
 
       - name: Invalidate CloudFront cache
         run: |
-          aws cloudfront create-invalidation --distribution-id YOUR_DISTRIBUTION_ID --paths "/*"
+          aws cloudfront create-invalidation --distribution-id ELQP6ZSJS6Z80 --paths "/*"
 
