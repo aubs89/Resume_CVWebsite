@@ -16,8 +16,8 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.TBD }}
-          aws-secret-access-key: ${{ secrets.KEY }}
+          aws-access-key-id: ${{ secrets.TBD }}  # replace with your actual secret name
+          aws-secret-access-key: ${{ secrets.Key }}  # replace with your actual secret name
           aws-region: us-east-1
 
       - name: Deploy to S3
@@ -25,10 +25,10 @@ jobs:
         with:
           args: --follow-symlinks --delete --exclude '.git/*'
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.TBD }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.TBD }}  # replace with your actual secret name
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.Key }}  # replace with your actual secret name
           AWS_REGION: 'us-east-1'
-          AWS_S3_BUCKET: ${{ secrets.RESUME_WEB_BUCKET }}
+          AWS_S3_BUCKET: ${{ secrets.Bucket }}  # replace with your actual secret name
 
       - name: Invalidate CloudFront cache
         run: |
