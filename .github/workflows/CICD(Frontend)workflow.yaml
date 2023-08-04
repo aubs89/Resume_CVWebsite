@@ -20,14 +20,15 @@ jobs:
           aws-secret-access-key: ${{ secrets.Key }}
           aws-region: us-east-1
 
-      - name: Deploy to S3
-        uses: jakejarvis/s3-sync-action@master
-        with:
-          args: --follow-symlinks --delete --exclude '.git/*'
-          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.TBD }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.Key }}
-          AWS_REGION: 'us-east-1'
+          - name: Deploy to S3
+            uses: jakejarvis/s3-sync-action@master
+            with:
+              args: --follow-symlinks --delete --exclude '.git/*'
+              aws-s3-bucket: ${{ secrets.resume-web-bucket }}
+              aws-access-key-id: ${{ secrets.TBD }}
+              aws-secret-access-key: ${{ secrets.Key }}
+              aws-region: 'us-east-1'
+
 
 
       - name: Invalidate CloudFront cache
